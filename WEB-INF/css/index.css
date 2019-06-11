@@ -1,0 +1,79 @@
+html{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.head-bar{
+    border-bottom: 2px solid lightgray;
+}
+
+.btn{
+    border: none;
+    background: none;
+    font-family: Segoe UI;
+}
+
+#language-choices {
+    margin-right: 20vw !important;
+    float:left;
+}
+
+
+#language-choices label input {
+    display:none;
+    top:-20px;
+}
+
+#language-choices input:checked + span {
+    color: rgb(26, 128, 187);
+}
+
+label.language-divider{
+    color: rgb(26, 128, 187);
+}
+
+.body-container{
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+}
+
+.sidebar{
+    padding-left: 5vw;
+    width: 20vw;
+    position: absolute;
+    border-right: 2px solid lightgray;
+    min-height: 100%;
+}
+
+.project-form{
+    position: absolute;
+    display:block;
+    margin-left: 25vw;
+    padding: 2vw 0 0 2vw;
+}
+
+.project-form label{
+    width: 8rem;
+}
+
+.project-form>form{
+    margin-top: 2rem;
+    line-height: 2;
+    padding-bottom: 2rem;
+}
+
+.project-form>form input{
+    height: 38px;
+    border: 1px rgb(180,180,180) solid;
+    border-radius: 10px;
+}
+
+.sidebar ul{
+    list-style-type: none;
+}
+
+.prj-fields{
+    margin-left: 5vw;
+}
