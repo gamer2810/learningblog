@@ -1,0 +1,109 @@
+.project-form{
+    margin-top: 2vw;
+}
+
+.project-form * {
+    margin-top: 1.2vw;
+}
+
+.project-form label{
+    width: 10vw;
+    margin-left: 3vw;
+}
+
+.project-form input, .project-form select{
+    align-items: center;
+}
+
+.prj-fields{
+    border-color: lightgray;
+    border-radius: 5px;
+    width: 12vw;
+}
+
+.prj-fields-long{
+    width: 38vw;
+}
+
+.prj-btn{
+    margin-left: 22vw;
+}
+
+.indicate-important-input{
+    color: red;
+}
+
+.prj-btn *{
+    margin-right: 2vw;
+    border-radius:6px;
+
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+	
+    border-radius:6px;
+	display:inline-block;
+	cursor:pointer;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size:1em;
+    font-weight: 500;
+    height: 2.2vw;
+	width: 12vw;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #5b6178;
+}
+
+.btn-prj-create{
+    background-color: #2161e0;
+    border:1px solid #0c2980;
+    font-size: 1rem;
+	color:#ffffff;
+    min-height: 40px;
+}
+
+.btn-prj-cancel{
+    background-color:rgb(245, 245, 245);
+    border:1px solid rgb(200, 200, 200);
+	color:#000000;
+    font-size: 1rem;
+    min-height: 40px;
+}
+
+#prj-number-hint{
+    display:none;
+    margin-left: 1vw;
+    color:red;
+}
+
+.validation-err{
+    background: lightpink;
+    border: 1.5px solid #eee;
+    border-radius: 10px;
+    height: 2.5vw;
+    min-height: 30px;
+    max-height: 45px;
+    padding-left: 3vw;
+    vertical-align: middle;
+    position:relative;
+    bottom: 0.5vw;
+}
+
+.validation-err-cause{
+    margin-top: 0.35vw;
+    color: palevioletred;
+    font-weight: 600;
+    vertical-align: middle;
+    display:inline-block;
+    position:absolute;
+}
+.validation-err-dismiss{
+    margin-top: 0.35vw;
+    position:absolute;
+    background:none;
+    border:none;
+    right: 2vw;
+}
+.validation-err-dismiss>i{
+    margin-top:0;
+    background: none;
+    color: firebrick;
+    font-weight:bold;
+}

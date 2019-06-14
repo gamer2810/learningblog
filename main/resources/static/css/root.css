@@ -1,0 +1,12 @@
+:root{
+    --divider-color: lightgrey;
+
+    --title-color: rgb(103,103,103);
+    --clickable-color: #2161e0;
+    --background-gray-color: rgb(230,230,230);
+    --unclickable-gray-color: #666666;
+
+    --selected-menu: #333333;
+    --unselected-menu: #666666;
+    --field-label: #666666;
+}

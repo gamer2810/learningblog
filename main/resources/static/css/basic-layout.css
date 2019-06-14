@@ -1,0 +1,133 @@
+html{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.head-bar{
+    border-bottom: 2px solid var(--divider-color);
+    background-color: var(--background-gray-color) !important;
+}
+
+.head-bar-title{
+    color: var(--title-color) !important;
+    font-weight: bolder;
+}
+
+.head-bar .btn{
+    border: none;
+    background: none;
+    font-family: Segoe UI;
+}
+
+.head-bar .clickable-btn{
+    color: var(--clickable-color);
+    font-weight: bold;
+}
+
+.head-bar .unclickable-btn{
+    color: var(--unclickable-gray-color);
+    font-weight: bold;
+}
+
+#language-choices {
+    margin-right: 20vw !important;
+    font-weight:600;
+    float:left;
+}
+
+
+#language-choices label input {
+    display:none;
+    top:-20px;
+}
+
+#language-choices input:checked + span {
+    color: var(--clickable-color);
+    font-weight: bold;
+}
+
+label.language-divider{
+    color: var(--clickable-color);
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.body-container{
+    position: absolute;
+    font-size: 1rem;
+    word-wrap: break-word;
+    display:block;
+    min-height: 100%;
+    width: 100%;
+    background-color: var(--background-gray-color) !important;
+}
+
+.sidebar{
+    padding-left: 3vw;
+    width: 20vw;
+    position: absolute;
+    border-right: 2px solid var(--divider-color);
+    min-height: 100%;
+}
+
+.sidebar ul{
+    list-style-type: none;
+}
+
+.sidebar-mainmenu{
+    padding-top: 2vw;
+}
+
+.sidebar-mainmenu > .sidebar-item{
+    margin-bottom: 2vw;
+    cursor: default;
+    color: var(--clickable-color) !important;
+    font-weight: 600;
+    font-size: 18pt;
+}
+
+.sidebar-subitem>a,.sidebar-item > a{
+    color: var(--clickable-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.sidebar-subitem>a:hover,.sidebar-item > a:hover{
+    color: var(--unselected-menu);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.sidebar-submenu{
+    padding-top: 0.5vw;
+    font-size:14pt;
+    font-weight: 500;
+    color: var(--unselected-menu);
+    padding-left: 0;
+}
+
+.sidebar-submenu .sidebar-subitem{
+    padding-top: 0.3vw;
+}
+
+.sidebar-submenu .sidebar-subitem.selected{
+    color: var(--selected-menu);
+}
+
+
+.content-container{
+    position: absolute;
+    display:block;
+    width: 70%;
+    margin-left: 24vw;
+    padding: 2vw 0 0 0;
+}
+
+.content-title{
+    font-size: 18pt;
+    padding: 0 0 0.5vw 0;
+    border-bottom: 2px solid var(--divider-color);
+}

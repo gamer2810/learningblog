@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="Error"></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.min.css}">
+    <link rel="stylesheet" th:href="@{/css/root.css}">
+    <link rel="stylesheet" th:href="@{/css/basic-layout.css}">
+    <link rel="stylesheet" th:href="@{/css/error.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light head-bar">
+    <img class="ml-5 navbar-brand" src="../imgs/logo_elca.png" alt="Elca's Logo">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <h3 class="ml-3 nav-link head-bar-title" th:text="#{common.navbar.title}">Project Information Management</h3>
+                <!-- <a class="nav-link" href="#">Project Information Management<span class="sr-only">(current)</span></a> -->
+            </li>
+        </ul>
+
+<!--        <div id="language-choices" class="mr-5 my-2 my-lg-0">-->
+<!--            <label><input id="language-choices-en" type="radio" name="lang" value="en" ><span>EN</span></label>-->
+<!--            <label class="language-divider">|</label>-->
+<!--            <label><input id="language-choices-fr" type="radio" name="lang" value="fr"><span>FR</span></label>-->
+<!--            <label class="language-divider">|</label>-->
+<!--            <label><input id="language-choices-vn" type="radio" name="lang" value="vn"><span>VN</span></label>-->
+<!--        </div>-->
+
+        <button class="btn mr-5 my-2 my-sm-0 clickable-btn" type="submit" th:text="#{common.navbar.help}">Help</button>
+        <button class="btn mr-5 my-2 my-sm-0 unclickable-btn" type="submit" th:text="#{common.navbar.logout}">Log out</button>
+    </div>
+</nav>
+<!-- NAVBAR -->
+
+<div class="body-container">
+    <div class="img-container">
+    </div>
+    <div class="big-announcement">
+        <p>Unexpected error occurred.</p>
+<!--        <p color="red" th:text="${error}"></p>-->
+        <p color="red" th:text="${message}"></p>
+        <p>Please <span class="contact-admin">contact your administrator</span></p>
+        <p>or <a href="/">go back to the project page.</a></p>
+    </div>
+</div>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/moment-with-locales.js}"></script>
+<script th:src="@{/js/datatables.min.js}"></script>
+<script th:src="@{/js/languages.js}"></script>
+<script th:src="@{/js/jquery.cookie.js}"></script>
+</body>
+</html>

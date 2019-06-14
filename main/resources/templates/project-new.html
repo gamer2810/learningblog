@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="#{newprj.title}">New Project</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.min.css}">
+    <link rel="stylesheet" th:href="@{/css/root.css}">
+    <link rel="stylesheet" th:href="@{/css/basic-layout.css}">
+    <link rel="stylesheet" th:href="@{/css/new-project.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <!-- NAVBAR FRAGMENT -->
+        <nav th:replace="fragments/navbar :: navbar" class="navbar navbar-expand-lg navbar-light bg-light head-bar">
+<!--                <img class="ml-5 navbar-brand" src="../imgs/logo_elca.png" alt="Elca's Logo">-->
+<!--                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                  <span class="navbar-toggler-icon"></span>-->
+<!--                </button>-->
+
+<!--                <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--                  <ul class="navbar-nav mr-auto">-->
+<!--                    <li class="nav-item active">-->
+<!--                        <h3 class="ml-3 nav-link head-bar-title" th:text="#{common.navbar.title}">Project Information Management</h3>-->
+<!--                      &lt;!&ndash; <a class="nav-link" href="#">Project Information Management<span class="sr-only">(current)</span></a> &ndash;&gt;-->
+<!--                    </li>-->
+<!--                  </ul>-->
+
+<!--                  <div id="language-choices" class="mr-5 my-2 my-lg-0">-->
+<!--                    <label><input id="language-choices-en" type="radio" name="lang" value="en"><span>EN</span></label>-->
+<!--                    <label class="language-divider">|</label>-->
+<!--                    <label><input id="language-choices-fr" type="radio" name="lang" value="fr" ><span>FR</span></label>-->
+<!--                      <label class="language-divider">|</label>-->
+<!--                      <label><input id="language-choices-vn" type="radio" name="lang" value="vn"><span>VN</span></label>-->
+<!--                  </div>-->
+
+<!--                  <button class="btn mr-5 my-2 my-sm-0 clickable-btn" type="submit" th:text="#{common.navbar.help}">Help</button>-->
+<!--                  <button class="btn mr-5 my-2 my-sm-0 unclickable-btn" type="submit" th:text="#{common.navbar.logout}">Log out</button>-->
+<!--                </div>-->
+              </nav>
+    <!-- NAVBAR -->
+
+    <div class="body-container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <ul class="sidebar-mainmenu">
+                <li class="nav-item sidebar-item"><a id="prjlist-link" class="sidebar-item"href="/" th:text="#{common.sidebar.prjlist}">Projects list</a></li>
+                <li class="nav-item sidebar-item"><span th:text="#{common.sidebar.new}">New</span>
+
+                  <ul class="sidebar-submenu">
+                  <li class="nav-item sidebar-subitem selected" href="/new" disabled th:text="#{common.sidebar.project}">Project</li>
+                  <li class="nav-item  sidebar-subitem" th:text="#{common.sidebar.customer}">Customer</li>
+                  <li class="nav-item  sidebar-subitem" th:text="#{common.sidebar.supplier}">Supplier</li>
+                  </ul>
+
+                </li>
+            </ul>
+        </div>
+        <!-- SIDEBAR -->
+
+        <!-- CONTENT-->
+        <div class="content-container">
+            <h3 class="content-title" th:text="#{newprj.title}">New Project</h3>
+
+        <div class="project-form">
+            <!--ERROR POPUP-->
+            <p class="validation-err"><span class="validation-err-cause">Please enter all the mandatory fields.</span><button class="validation-err-dismiss"><i class="fa fa-times"></i></button></p>
+            <!--ERROR POPUP-->
+                <form action="/new" method="post" onsubmit="return validateForm()" name="project-form">
+                    <label for="prj-number"><span th:text="#{newprj.form.number}">Project Number</span><span class="indicate-important-input">*</span></label>
+                    <input required th:attr="oninvalid='this.setCustomValidity(#{newprj.customerr})'" name="number" type="number" min="0" max="9999" id="prj-number" class="prj-fields"><span id="prj-number-hint">Please input a number in the [0-9999] range.</span><br>
+
+                    <label for="prj-name"><span  th:text="#{newprj.form.name}">Project Name</span><span class="indicate-important-input">*</span></label>
+                    <input required name="name" type="text" id="prj-name" class="prj-fields prj-fields-long"><br>
+
+                    <label for="prj-customer"><span th:text="#{newprj.form.customer}">Customer</span><span class="indicate-important-input">*</span></label>
+                    <input required name="customer" type="text" id="prj-customer" class="prj-fields prj-fields-long"><br>
+
+                    <label for="select-prj-group"><span th:text="#{newprj.form.group}">Group</span><span class="indicate-important-input">*</span></label>
+                    <select name="group" id="select-prj-group" class="prj-fields">
+                        <option selected value="new">New Group</option>
+                    </select><br>
+
+                    <label for="prj-members"><span th:text="#{newprj.form.member}">Members</span></label>
+                    <input type="text" id="prj-members" class="prj-fields prj-fields-long"><br>
+
+                    <label for="select-prj-status" ><span th:text="#{newprj.form.status}"> Status</span> <span class="indicate-important-input">*</span></label>
+                    <select name="status" id="select-prj-status" class="prj-fields">
+                        <option selected value="new" th:text="#{prjlist.status.new}">New</option>
+                        <option value="pla" th:text="#{prjlist.status.planned}">Planned</option>
+                        <option value="inp" th:text="#{prjlist.status.inprogress}">In progress</option>
+                        <option value="fin" th:text="#{prjlist.status.finished}">Finished</option>
+                    </select><br>
+
+                    <label for="prj-startdate"><span th:text="#{newprj.form.startdate}">Start date</span><span class="indicate-important-input">*</span></label>
+                    <input required name="startdate" type="date" id="prj-startdate" data-date-format="DD/MM/YYYY" class="prj-fields">
+
+                    <label for="prj-enddate" th:text="#{newprj.form.enddate}">End date</label>
+                    <input type="date" id="prj-enddate" class="prj-fields"><br>
+
+                    <div class="prj-btn">
+                      <button class="btn-prj-cancel" onclick="window.location.href='/'" th:text="#{newprj.form.btncancel}">Cancel</button>
+                      <button type="submit" id="prj-submit" class="btn-prj-create" onclick="return validateForm()" th:text="#{newprj.form.btncreate}">Create Project</button>
+                    </div>
+                </form>
+        </div>
+      </div>
+        <!-- CONTENT-->
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/moment-with-locales.js}"></script>
+    <script th:src="@{/js/languages.js}"></script>
+    <script th:src="@{/js/jquery.cookie.js}"></script>
+    <script th:src="@{/js/jquery.validate.min.js}"></script>
+    <script th:src="@{/js/new-project.js}"></script>
+    <script th:src="@{/js/validate-projectform.js}"></script>
+  </body>
+</html>

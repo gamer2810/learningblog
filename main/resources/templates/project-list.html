@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="#{prjlist.title}">Projects List</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.min.css}">
+    <link rel="stylesheet" th:href="@{/css/root.css}">
+    <link rel="stylesheet" th:href="@{/css/basic-layout.css}">
+    <link rel="stylesheet" th:href="@{/css/project-list.css}">
+    <link rel="stylesheet" th:href="@{/css/datatables.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <!-- NAVBAR FRAGMENT -->
+        <nav th:replace="fragments/navbar :: navbar" class="navbar navbar-expand-lg navbar-light bg-light head-bar">
+<!--                <img class="ml-5 navbar-brand" src="../imgs/logo_elca.png" alt="Elca's Logo">-->
+<!--                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                  <span class="navbar-toggler-icon"></span>-->
+<!--                </button>-->
+<!--              -->
+<!--                <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--                  <ul class="navbar-nav mr-auto">-->
+<!--                    <li class="nav-item active">-->
+<!--                        <h3 class="ml-3 nav-link head-bar-title" th:text="#{common.navbar.title}">Project Information Management</h3>-->
+<!--                      &lt;!&ndash; <a class="nav-link" href="#">Project Information Management<span class="sr-only">(current)</span></a> &ndash;&gt;-->
+<!--                    </li>-->
+<!--                  </ul>-->
+
+<!--                  <div id="language-choices" class="mr-5 my-2 my-lg-0">-->
+<!--                    <label><input id="language-choices-en" type="radio" name="lang" value="en" ><span>EN</span></label>-->
+<!--                    <label class="language-divider">|</label>-->
+<!--                    <label><input id="language-choices-fr" type="radio" name="lang" value="fr"><span>FR</span></label>-->
+<!--                      <label class="language-divider">|</label>-->
+<!--                      <label><input id="language-choices-vn" type="radio" name="lang" value="vn"><span>VN</span></label>-->
+<!--                  </div>-->
+<!--                  -->
+<!--                  <button class="btn mr-5 my-2 my-sm-0 clickable-btn" type="submit" th:text="#{common.navbar.help}">Help</button>-->
+<!--                  <button class="btn mr-5 my-2 my-sm-0 unclickable-btn" type="submit" th:text="#{common.navbar.logout}">Log out</button>-->
+<!--                </div>-->
+              </nav>
+    <!-- NAVBAR -->
+
+    <div class="body-container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <ul class="sidebar-mainmenu">
+                <li class="nav-item sidebar-item"><a id="prjlist-link" class="sidebar-item" disabled th:text="#{common.sidebar.prjlist}">Projects list</a></li>
+                <li class="nav-item sidebar-item"><span th:text="#{common.sidebar.new}">New</span>
+                  <ul class="sidebar-submenu">
+                  <li class="nav-item sidebar-subitem"><a href="/new" th:text="#{common.sidebar.project}">Project</a></li>
+                  <li class="nav-item  sidebar-subitem" th:text="#{common.sidebar.customer}">Customer</li>
+                  <li class="nav-item  sidebar-subitem" th:text="#{common.sidebar.supplier}">Supplier</li>
+                  </ul>
+
+                </li>
+            </ul>
+        </div>
+        <!-- SIDEBAR -->
+
+        <!-- CONTENT-->
+        <div class="content-container">
+            <h3 class="content-title">Projects List</h3>
+
+            <div class="search-bar">
+                <input type="text" class="search-bar-criteria" th:placeholder="#{prjlist.searchhint}" placeholder="Project number, name, customer name">
+                <select class="search-bar-status">
+                        <option value="all" disabled selected style="color:#999" th:text="#{prjlist.filterhint}">Project status</option>
+                        <option value="new" th:text="#{prjlist.status.new}">New</option>
+                        <option value="pla" th:text="#{prjlist.status.planned}">Planned</option>
+                        <option value="inp" th:text="#{prjlist.status.inprogress}">In progress</option>
+                        <option value="fin" th:text="#{prjlist.status.finished}">Finished</option>
+                </select>
+                <button id="btn-search" th:text="#{prjlist.btnsearch}">Search project</button>
+                <button id="btn-reset-search" th:text="#{prjlist.btnreset}">Reset search</button>
+            </div>
+
+            <table id="prj-table" class="table table-striped table-bordered dt-responsive nowrap">
+                    <thead>
+                            <tr>
+                                <th></th>
+                                <th th:text="#{prjlist.th.number}">Number</th>
+                                <th th:text="#{prjlist.th.name}">Name</th>
+                                <th th:text="#{prjlist.th.status}">Status</th>
+                                <th th:text="#{prjlist.th.customer}">Customer</th>
+                                <th th:text="#{prjlist.th.startdate}">Start Date</th>
+                                <th th:text="#{prjlist.th.btndelete}">Delete</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="project : ${projects}">
+                            <td><input th:id="delete-arr-+${project.number}"  onclick="checkboxDelete(this);" class="checkbox-delete" th:if="${project.status == 'NEW'}" type="checkbox"></td>
+                            <th><a th:text="${project.number}" th:href="@{/edit(number=${project.number})}">3116</a></th>
+                            <td th:text="${project.name}"></td>
+                            <td th:text="${project.status}"></td>
+                            <td th:text="${project.customer}">Les Retaites</td>
+                            <td th:text="${project.startDate}">25.02.2004</td>
+                            <td><button th:if="${project.status == 'NEW'}" th:id="delete-+${project.number}" class="btn-delete" onclick="deleteRow(this)"><i class="fa fa-trash" style="color: orangered"></i></button></td>
+                        </tr>
+                    </tbody>
+        </table>
+        </div>
+        <!-- CONTENT-->
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/moment-with-locales.js}"></script>
+    <script th:src="@{/js/datatables.min.js}"></script>
+    <script th:src="@{/js/languages.js}"></script>
+    <script th:src="@{/js/jquery.cookie.js}"></script>
+    <script th:src="@{/js/project-list.js}"></script>
+  </body>
+</html>

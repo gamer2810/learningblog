@@ -1,0 +1,33 @@
+.body-container{
+    text-align:center;
+}
+
+.img-container{
+    position: relative;
+    left: 24vw;
+    top: 5vw;
+    width: 20vw;
+    height: 20vw;
+    background-size:100%;
+    background-image: url("../imgs/error-img.png");
+}
+
+.big-img{
+    position: relative;
+    background-size: 25%;
+}
+
+.contact-admin{
+    color:orangered;
+}
+
+.big-announcement{
+    display:block;
+    position:relative;
+    word-wrap: break-spaces;
+    left: 45vw;
+    bottom: 10vw;
+    text-align: left;
+    font-size: 2em;
+    color: #999;
+}
